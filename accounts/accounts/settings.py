@@ -120,3 +120,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') 
+MEDIA_URL = '/media/'
+
+# LOGIN_REDIRECT_URL = '/dashboard/'
+# LOGOUT_REDIRECT_URL = '/login/'
+
+LOGIN_URL = '/login/distributor/'
+
+
+AUTHENTICATION_BACKENDS = [
+    'store.auth_backends.EmailBackend',  # custom backend
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For testing
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pqr6997@gmail.com'
+EMAIL_HOST_PASSWORD = 'ived bgog rvrh eszs'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
