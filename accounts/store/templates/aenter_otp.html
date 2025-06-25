@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creative Colorlib SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="{% static 'css/style.css '%}" rel="stylesheet" type="text/css" media="all" />
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+</head>
+<body>
+	<div class="main-w3layouts wrapper">
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action="{% url 'verify_otp_admin' %}" method="post">
+                      {% csrf_token %}
+                        <input class="text" type="hidden" name="email" value="{{ email }}">
+                        <input class="text" type="text" name="otp" placeholder="Enter OTP" required=""><br>
+                        <input type="submit" value="verify otp">
+				</form>
+                <form method="POST" action="{% url 'resend_otp_admin' %}">
+                    {% csrf_token %}
+                    <input class="text" type="hidden" name="email" value="{{ email }}">
+                    <input type="submit" value="Resend otp">
+                </form>
+                {% if message %}
+                    <p style="color:green">{{ message }}</p>
+                {% endif %}
+                {% if error %}
+                  <p style="color:red">{{ error }}</p>
+                {% endif %}
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
